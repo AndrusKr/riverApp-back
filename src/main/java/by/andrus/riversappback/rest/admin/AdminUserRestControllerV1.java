@@ -2,7 +2,6 @@ package by.andrus.riversappback.rest.admin;
 
 import by.andrus.riversappback.dto.AdminUserDto;
 import by.andrus.riversappback.model.User;
-import by.andrus.riversappback.service.RoleService;
 import by.andrus.riversappback.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,12 +16,10 @@ import java.util.stream.Collectors;
 @RequestMapping(value = "/api/v1/admin/users")
 public class AdminUserRestControllerV1 {
     private final UserService userService;
-    private final RoleService roleService;
 
     @Autowired
-    public AdminUserRestControllerV1(UserService userService, RoleService roleService) {
+    public AdminUserRestControllerV1(UserService userService) {
         this.userService = userService;
-        this.roleService = roleService;
     }
 
     @PostMapping

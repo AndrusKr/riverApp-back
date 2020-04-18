@@ -3,13 +3,10 @@ package by.andrus.riversappback.dto;
 import by.andrus.riversappback.model.Role;
 import by.andrus.riversappback.model.Status;
 import by.andrus.riversappback.model.User;
-import by.andrus.riversappback.service.RoleService;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Data
@@ -32,7 +29,7 @@ public class AdminUserDto {
         adminUserDto.setFirstName(user.getFirstName());
         adminUserDto.setLastName(user.getLastName());
         adminUserDto.setEmail(user.getEmail());
-        adminUserDto.setPassword(user.getPassword());
+        adminUserDto.setPassword("PASSWORD_HIDDEN");
         adminUserDto.setStatus(user.getStatus().name());
         adminUserDto.setRoleNames(user.getRoles().stream().map(Role::getName).collect(Collectors.toList()));
         return adminUserDto;
@@ -47,10 +44,7 @@ public class AdminUserDto {
         user.setEmail(this.email);
         user.setPassword(this.password);
         user.setStatus(Status.valueOf(this.status));
-        user.setRoles(
-                this.roleNames.stream().map(
-                        role -> roleService.getByName(role)
-                ).filter(Objects::nonNull).collect(Collectors.toList()));
+        user.setRoles(this.roleNames.stream().map(Role::new).collect(Collectors.toList()));
         return user;
     }
 }

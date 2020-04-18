@@ -17,9 +17,15 @@ public class Role extends BaseEntity {
     public Role() {
     }
 
+    public Role(String name) throws IllegalArgumentException {
+        RoleName roleName = RoleName.valueOf(name);
+        this.setId(roleName.id);
+        this.setName(roleName.name());
+    }
+
     @Override
     public String toString() {
-        return "Role{" +
+        return "Role {" +
                 "id: " + super.getId() + ", " +
                 "name: " + name + "}";
     }
