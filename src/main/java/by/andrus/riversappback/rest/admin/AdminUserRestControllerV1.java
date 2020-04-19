@@ -24,10 +24,13 @@ public class AdminUserRestControllerV1 {
 
     @PostMapping
     public ResponseEntity<AdminUserDto> createUser(@RequestBody @Valid AdminUserDto adminUserDto) {
-        User registeredUser = this.userService.register(adminUserDto.toUser());
-        return registeredUser == null
-                ? new ResponseEntity<>(HttpStatus.NO_CONTENT)
-                : new ResponseEntity<>(AdminUserDto.fromUser(registeredUser), HttpStatus.OK);
+        User registeredUser;
+        try {
+            registeredUser = this.userService.register(adminUserDto.toUser());
+        } catch (Throwable throwable) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>(AdminUserDto.fromUser(registeredUser), HttpStatus.OK);
     }
 
     @GetMapping
@@ -53,11 +56,11 @@ public class AdminUserRestControllerV1 {
 
     @DeleteMapping(value = "{id}")
     public ResponseEntity<HttpStatus> deleteUserById(@PathVariable(name = "id") Long id) {
-        User user = userService.findById(id);
-        if (user == null) {
-            new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        try {
+            userService.deleteById(id);
+        } catch (Throwable throwable) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        userService.deleteById(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }
