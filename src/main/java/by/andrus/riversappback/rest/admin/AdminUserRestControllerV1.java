@@ -50,4 +50,14 @@ public class AdminUserRestControllerV1 {
                 ? new ResponseEntity<>(HttpStatus.NO_CONTENT)
                 : new ResponseEntity<>(AdminUserDto.fromUser(user), HttpStatus.OK);
     }
+
+    @DeleteMapping(value = "{id}")
+    public ResponseEntity<HttpStatus> deleteUserById(@PathVariable(name = "id") Long id) {
+        User user = userService.findById(id);
+        if (user == null) {
+            new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        userService.deleteById(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }

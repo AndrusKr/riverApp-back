@@ -40,7 +40,7 @@ public class AuthenticationRestControllerV1 {
         try {
             String username = authenticationRequestDto.getUsername();
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, authenticationRequestDto.getPassword()));
-            User user = userService.findByUserName(username);
+            User user = userService.findByUsername(username);
             if (user == null) {
                 throw new UsernameNotFoundException("User with username: " + username + " not found");
             }
