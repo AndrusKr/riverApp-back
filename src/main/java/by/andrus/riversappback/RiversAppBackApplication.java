@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
 
 /**
- * @author AndrusKr
+ * @author AndrusKr andrus.kryvicenka@gmail.com
  */
 @SpringBootApplication
 @EnableCaching /* ToDO Add Redis to store cache there */
