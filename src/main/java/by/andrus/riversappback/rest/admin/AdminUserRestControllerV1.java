@@ -30,7 +30,7 @@ public class AdminUserRestControllerV1 {
         } catch (Throwable throwable) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<>(AdminUserDto.fromUser(registeredUser), HttpStatus.OK);
+        return new ResponseEntity<>(AdminUserDto.fromUser(registeredUser), HttpStatus.CREATED);
     }
 
     @GetMapping
@@ -73,6 +73,6 @@ public class AdminUserRestControllerV1 {
         } catch (Throwable throwable) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
