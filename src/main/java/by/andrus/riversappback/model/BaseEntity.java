@@ -1,26 +1,23 @@
 package by.andrus.riversappback.model;
 
 import lombok.Data;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
+import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
-@MappedSuperclass
 @Data
-public class BaseEntity {
+@EqualsAndHashCode(callSuper = true)
+@MappedSuperclass
+public abstract class BaseEntity extends Auditable<Long> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
-    @CreatedDate
-    private Date created = new Date();
-
-    @LastModifiedDate
-    private Date updated = new Date();
 
     @Enumerated(EnumType.STRING)
-    @Column
+    @Column(name = "status")
     private Status status;
 }
