@@ -14,5 +14,7 @@ ALTER TABLE user_roles
         FOREIGN KEY (role_id) REFERENCES roles (id)
             ON UPDATE RESTRICT ON DELETE CASCADE;
 
-INSERT INTO roles (name) VALUES ('ROLE_USER');
-INSERT INTO roles (name) VALUES ('ROLE_ADMIN');
+INSERT INTO user_roles
+VALUES (1, 1),
+       (1, 2),
+       (2, 1);
