@@ -2,7 +2,6 @@ package by.andrus.riversappback.service.impl;
 
 import by.andrus.riversappback.model.Status;
 import by.andrus.riversappback.model.User;
-import by.andrus.riversappback.repository.RoleRepository;
 import by.andrus.riversappback.repository.UserRepository;
 import by.andrus.riversappback.service.UserService;
 import lombok.extern.slf4j.Slf4j;
@@ -19,7 +18,7 @@ public class UserServiceImpl implements UserService {
     private final BCryptPasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository, BCryptPasswordEncoder passwordEncoder) {
+    public UserServiceImpl(UserRepository userRepository, BCryptPasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
     }
