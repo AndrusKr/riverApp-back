@@ -58,6 +58,19 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User update(User changedUser) throws IllegalAccessException {
+        User dbUser = getById(changedUser.getId());
+        if (dbUser == null)
+            throw new IllegalArgumentException("User ID must not be NULL");
+        if (changedUser.getPassword() != null)
+            changedUser.setPassword(passwordEncoder.encode(changedUser.getPassword()));
+        changedUser.addMissing(dbUser);
+        User updatedUser = userRepository.save(changedUser);
+        log.info("IN UserServiceImpl.update user: {} successfully updated", updatedUser);
+        return updatedUser;
+    }
+
+    @Override
     public void deleteById(Long id) {
         userRepository.deleteById(id);
         log.info("IN UserServiceImpl.deleteById - user with id: {} successfully deleted", id);

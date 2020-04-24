@@ -54,6 +54,18 @@ public class AdminUserRestControllerV1 {
                 : new ResponseEntity<>(AdminUserDto.fromUser(user), HttpStatus.OK);
     }
 
+    @PutMapping
+    public ResponseEntity<AdminUserDto> updateUser(@RequestBody @Valid AdminUserDto adminUserDto) {
+        User updatedUser;
+        try {
+            updatedUser = this.userService.update(adminUserDto.toUser());
+        } catch (Throwable throwable) {
+                log.info(throwable.toString());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>(AdminUserDto.fromUser(updatedUser), HttpStatus.OK);
+    }
+
     @DeleteMapping(value = "{id}")
     public ResponseEntity<HttpStatus> deleteUserById(@PathVariable(name = "id") Long id) {
         try {

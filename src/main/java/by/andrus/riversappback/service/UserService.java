@@ -13,7 +13,7 @@ public interface UserService {
 
     User getById(Long id);
 
-    User findById(Long id);
+    User update(User user) throws InstantiationException, IllegalAccessException;
 
     void deleteById(Long id);
 }
