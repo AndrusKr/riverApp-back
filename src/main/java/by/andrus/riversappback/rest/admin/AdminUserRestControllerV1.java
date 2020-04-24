@@ -3,6 +3,7 @@ package by.andrus.riversappback.rest.admin;
 import by.andrus.riversappback.dto.AdminUserDto;
 import by.andrus.riversappback.model.User;
 import by.andrus.riversappback.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +15,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "/api/v1/admin/users")
+@Slf4j
 public class AdminUserRestControllerV1 {
     private final UserService userService;
 
@@ -60,7 +62,7 @@ public class AdminUserRestControllerV1 {
         try {
             updatedUser = this.userService.update(adminUserDto.toUser());
         } catch (Throwable throwable) {
-                log.info(throwable.toString());
+            log.info(throwable.toString());
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<>(AdminUserDto.fromUser(updatedUser), HttpStatus.OK);
