@@ -25,42 +25,42 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User register(User user) {
+    public User create(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setStatus(Status.ACTIVE);
-        User registeredUser = userRepository.save(user);
-        log.info("IN UserServiceImpl.register user: {} successfully registered", registeredUser);
-        return registeredUser;
+        User createdUser = userRepository.save(user);
+        log.info("IN UserServiceImpl.create user: {} successfully created", createdUser);
+        return createdUser;
     }
 
     @Override
     public List<User> getAll() {
         List<User> users = userRepository.findAll();
-        log.info("IN UserServiceImpl.register - user: {} users found", users.size());
+        log.info("IN UserServiceImpl.getAll: {} users found", users.size());
         return users;
     }
 
     @Override
-    public User findByUsername(String username) {
+    public User getByUsername(String username) {
         User user = userRepository.findByUsername(username);
-        log.info("IN UserServiceImpl.findByUserName - user: {} found by username: {}", user, username);
+        log.info("IN UserServiceImpl.getByUserName - user: {} found by username: {}", user, username);
         return user;
     }
 
     @Override
-    public User findById(Long id) {
+    public User getById(Long id) {
         User user = userRepository.findById(id).orElse(null);
         if (user == null) {
-            log.info("IN UserServiceImpl.findById - no user found by id: {}", id);
+            log.info("IN UserServiceImpl.getById - no user found by id: {}", id);
             return null;
         }
-        log.info("IN UserServiceImpl.findById - user: {} found by id: {}", user, id);
+        log.info("IN UserServiceImpl.getById - user: {} found by id: {}", user, id);
         return user;
     }
 
     @Override
     public void deleteById(Long id) {
         userRepository.deleteById(id);
-        log.info("IN UserServiceImpl.delete - user with id: {} successfully deleted", id);
+        log.info("IN UserServiceImpl.deleteById - user with id: {} successfully deleted", id);
     }
 }

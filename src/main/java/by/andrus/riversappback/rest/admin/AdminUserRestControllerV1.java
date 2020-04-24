@@ -26,7 +26,7 @@ public class AdminUserRestControllerV1 {
     public ResponseEntity<AdminUserDto> createUser(@RequestBody @Valid AdminUserDto adminUserDto) {
         User registeredUser;
         try {
-            registeredUser = this.userService.register(adminUserDto.toUser());
+            registeredUser = this.userService.create(adminUserDto.toUser());
         } catch (Throwable throwable) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
@@ -48,7 +48,7 @@ public class AdminUserRestControllerV1 {
 
     @GetMapping(value = "{id}")
     public ResponseEntity<AdminUserDto> getUserById(@PathVariable(name = "id") Long id) {
-        User user = userService.findById(id);
+        User user = userService.getById(id);
         return user == null
                 ? new ResponseEntity<>(HttpStatus.NO_CONTENT)
                 : new ResponseEntity<>(AdminUserDto.fromUser(user), HttpStatus.OK);
