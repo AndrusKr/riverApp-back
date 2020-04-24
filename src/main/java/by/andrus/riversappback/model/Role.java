@@ -8,7 +8,12 @@ import java.util.List;
 @Entity
 @Table(name = "roles")
 @Data
-public class Role extends BaseEntity {
+public class Role {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     @Column(name = "name")
     private String name;
     @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
@@ -26,7 +31,7 @@ public class Role extends BaseEntity {
     @Override
     public String toString() {
         return "Role {" +
-                "id: " + super.getId() + ", " +
+                "id: " + getId() + ", " +
                 "name: " + name + "}";
     }
 
