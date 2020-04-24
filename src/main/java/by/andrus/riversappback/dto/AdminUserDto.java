@@ -43,8 +43,10 @@ public class AdminUserDto {
         user.setLastName(this.lastName);
         user.setEmail(this.email);
         user.setPassword(this.password);
-        user.setStatus(Status.valueOf(this.status));
-        user.setRoles(this.roleNames.stream().map(Role::new).collect(Collectors.toList()));
+        if (this.getStatus() != null)
+            user.setStatus(Status.valueOf(this.status));
+        if (this.roleNames != null)
+            user.setRoles(this.roleNames.stream().map(Role::new).collect(Collectors.toList()));
         return user;
     }
 }
