@@ -36,7 +36,7 @@ VALUES ('andrus',
         'ld.kryvičenka@gmail.com',
         'Ld',
         'Kryvičenka',
-        '$2y$04$/l9lY2XyC9.I6KH3pNe3tOaQCGlteGmf94Sg3ycaMtnxhuGvtA9AO',
+        '$2y$04$wpGCli56ad0rM8NQ9hyLmuTMcJOGnI/6f08oW.klz9dPo6VNFjYIC',
         1,
         1)
 ON CONFLICT DO NOTHING;
