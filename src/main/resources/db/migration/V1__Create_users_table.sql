@@ -1,11 +1,13 @@
 CREATE TABLE users
 (
     id         BIGSERIAL                                    NOT NULL,
+
     username   VARCHAR(100)                                 NOT NULL,
     email      VARCHAR(255)                                 NOT NULL,
     first_name VARCHAR(100)                                 NOT NULL,
     last_name  VARCHAR(100)                                 NOT NULL,
     password   VARCHAR(255)                                 NOT NULL,
+
     created_by BIGINT                                       NULL,
     created_at TIMESTAMP WITHOUT TIME ZONE DEFAULT NOW()    NOT NULL,
     updated_by BIGINT                                       NULL,

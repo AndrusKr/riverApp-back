@@ -61,7 +61,7 @@ public class UserServiceImpl implements UserService {
     public User update(User changedUser) throws IllegalAccessException {
         User dbUser = getById(changedUser.getId());
         if (dbUser == null)
-            throw new IllegalArgumentException("User ID must not be NULL");
+            throw new IllegalArgumentException("There is NO such user in DB");
         if (changedUser.getPassword() != null)
             changedUser.setPassword(passwordEncoder.encode(changedUser.getPassword()));
         changedUser.addMissing(dbUser);
