@@ -11,7 +11,7 @@ import java.util.Optional;
 
 @Configuration
 @EnableJpaAuditing(auditorAwareRef = "auditorProvider")
-public class JpaAuditingConfiguration {
+public class JpaAuditingConfig {
     @Bean
     public AuditorAware<Long> auditorProvider() {
         return () -> Optional.ofNullable(
