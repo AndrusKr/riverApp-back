@@ -37,7 +37,13 @@ public class RiverServiceImpl implements RiverService {
 
     @Override
     public River getById(Long id) {
-        return null;
+        River river = riverRepository.findById(id).orElse(null);
+        if (river == null) {
+            log.info("IN UserServiceImpl.getById - no user found by id: {}", id);
+            return null;
+        }
+        log.info("IN UserServiceImpl.getById - user: {} found by id: {}", river, id);
+        return river;
     }
 
     @Override
