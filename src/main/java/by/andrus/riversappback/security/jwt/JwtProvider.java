@@ -3,6 +3,7 @@ package by.andrus.riversappback.security.jwt;
 import by.andrus.riversappback.model.Role;
 import by.andrus.riversappback.model.User;
 import io.jsonwebtoken.*;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -21,6 +22,7 @@ import java.util.Date;
 import java.util.List;
 
 @Component
+@Slf4j
 public class JwtProvider {
     @Value("${jwt.token.secret}")
     public String secret;
@@ -67,6 +69,7 @@ public class JwtProvider {
         if (bearerToken != null && bearerToken.startsWith("Bearer_")) {
             return bearerToken.substring(7);
         }
+        log.info("BearerToken is NULL or it does NOT starts with 'Bearer_'");
         return null;
     }
 
